@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>YourApp</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+</head>
+<body>
+<div class="container">
+    <!-- Page Content goes here -->
+    <h1 class="center-align"> HELLO WORLD </h1>
+    <div class="row">
+        <div class="input-field col s12">
+            <input placeholder="Placeholder" id="data" type="text" class="validate">
+            <label for="data">Введите данные</label>
+        </div>
+    </div>
+    <!--<input type="text" id="data"/>-->
+    <button class="btn waves-effect waves-light" type="submit" name="action" id="post" href="#">Submit to DB
+        <i class="material-icons right">send</i>
+    </button>
+    <a class="waves-effect waves-light btn" id="get" href="#">GET</a>
+    <!--<a id="post" href="#">POST</a>-->
+    <!--<a id="get" href="#">GET</a>-->
+
+    <div id="container"></div>
+</div>
+
+
+
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+
+<script>
+    $('#get').click(function () {
+        $.ajax({
+            type: "GET",
+            cache: false,
+            url: '/getRandomData',
+            data: "",
+            success: function (response) {
+                var html = "";
+                $.each(response.data, function (i) {
+                    html = html + response.data[i] + "<br/>";
+                });
+                $('#container').html(html);
+            }
+        });
+    });
+
+    $('#post').click(function () {
+        if (!$("#data").val()) {
+            alert("Enter your data!");
+        } else {
+            $.ajax({
+                type: "POST",
+                cache: false,
+                url: '/persist',
+                data: {
+                    'data': $("#data").val()
+                },
+                success: function (response) {
+                    $('#get').click();
+                }
+            });
+        }
+
+    });
+
+</script>
+
+</html>
