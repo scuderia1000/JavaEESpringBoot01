@@ -4,9 +4,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     devtool: 'source-map',
-    entry: './client/index.js',
+    entry: './src/index.js',
     output: {
-        path: path.join(__dirname, '../../../target/classes/static'),
+        path: path.join(__dirname, './static'),
         filename: 'app-bundle.js'},
     resolve: {extensions: ['.js', '.jsx']},
     plugins: [
@@ -16,12 +16,11 @@ module.exports = {
             "process.env": {
                 NODE_ENV: JSON.stringify("development")
             }
-        }),
-        new HtmlWebpackPlugin({
-            template: './static/index.html',
-            inject: "body"
         })
     ],
+    node: {
+        net: 'empty',
+    },
     module: {
         loaders: [
             {
@@ -30,14 +29,21 @@ module.exports = {
                 exclude: /node_modules/
             }
         ]
+
     },
     devServer: {
         port: 3000,
         noInfo: false,
         quiet: false,
         lazy: false,
+        proxy: {
+            '/': {
+                target: 'http://localhost:8080',
+                secure: false
+            }
+        },
         watchOptions: {
-            poll: true
+            poll: false
         }
     }
 };
