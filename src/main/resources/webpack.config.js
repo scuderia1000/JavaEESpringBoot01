@@ -33,6 +33,7 @@ module.exports = {
     },
     devServer: {
         port: 3000,
+        historyApiFallback: true,
         noInfo: false,
         quiet: false,
         lazy: false,
@@ -44,6 +45,6 @@ module.exports = {
         },
         watchOptions: {
             poll: false
-        }
+        },
     }
 };

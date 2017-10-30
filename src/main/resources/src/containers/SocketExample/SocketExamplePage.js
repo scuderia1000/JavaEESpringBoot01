@@ -11,7 +11,7 @@ class SocketExamplePage extends Component {
         return (
             <div>
                 <h1>Socket Exapmle Page</h1>
-                <Helmet title="Socket Exapmle Page"/>
+                {/*<Helmet title="Socket Exapmle Page"/>*/}
                 <p>{!connected ? 'Sockets not connected' : 'Sockets connected'}</p>
 
                 <SocketConnectionLog loaded={loaded} message={message} connected={connected}
