@@ -22,6 +22,7 @@ const onClose = (store) => evt => {
 export const wsMiddleware = store => next => action => {
 
     const onMessage = (message) => {
+        debugger
         // Parse the JSON message received on the websocket
         const msg = JSON.parse(message.body).content;
         store.dispatch(socketActions.socketsMessageReceiving(msg));
@@ -42,8 +43,9 @@ export const wsMiddleware = store => next => action => {
             }
             console.log('SOCKETS_CONNECTING');
             store.dispatch(socketActions.socketsConnecting);
-            socket = new WebSocket('ws://localhost:8080/hello/websocket');
+            socket = new WebSocket('ws://localhost:8080/api/websocket');
             stompClient = Stomp.over(socket);
+            // stompClient = Stomp.client('ws://localhost:8080/api/websocket');
             stompClient.connect({}, function (frame) {
                 console.log('Connected: ' + frame);
                 store.dispatch(socketActions.socketsConnected());
@@ -60,7 +62,10 @@ export const wsMiddleware = store => next => action => {
             break;
 
         case types.SOCKETS_MESSAGE_SEND:
-            subscription = stompClient.subscribe(action.payload.subscribe, onMessage);
+            // subscription = stompClient.subscribe(action.payload.subscribe, onMessage);
+            subscription = stompClient.subscribe(action.payload.subscribe, (response) => {
+                debugger
+            });
             stompClient.send(action.payload.api, {}, JSON.stringify({'name': action.payload.data}));
             // subscription.unsubscribe();
             // socket.send(action.message_send);

@@ -12,11 +12,17 @@ export const SOCKETS_MESSAGE_RECEIVE = 'SOCKETS_MESSAGE_RECEIVE';
 export const API = {
     HELLO: {
         SAY_HELLO: '/app/hello'
+    },
+    USER: {
+        GET_USERS: '/app/users/getUsers'
     }
 };
 
 export const SUBSCRIBE = {
     MESSAGE: {
         GREETINGS: '/topic/greetings'
+    },
+    USER: {
+        USERS_INFO: '/allUsers/info'
     }
 };

@@ -39,7 +39,15 @@ class CommonTable extends React.Component {
     }
 
     render() {
+        const {list} = this.props;
+        const columnKeys = Object.keys(list);
 
+        const header = columnKeys.map((key) => {
+            const col = list[key];
+            return (
+                <TableHeaderColumn key={`col_${key}`}>{col}</TableHeaderColumn>
+            )
+        });
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <Table>
@@ -48,9 +56,7 @@ class CommonTable extends React.Component {
                         adjustForCheckbox={this.state.showCheckboxes}
                     >
                         <TableRow>
-                            <TableHeaderColumn>Name</TableHeaderColumn>
-                            <TableHeaderColumn>Age</TableHeaderColumn>
-                            <TableHeaderColumn>Years</TableHeaderColumn>
+                            {header}
                         </TableRow>
                     </TableHeader>
                     <TableBody

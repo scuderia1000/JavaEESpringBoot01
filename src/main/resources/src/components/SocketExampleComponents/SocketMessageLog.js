@@ -1,17 +1,25 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as socketExampleActions from '../../redux/actions/socketActions';
-import {API, SUBSCRIBE} from '../../redux/constants/AppConst';
 
 class SocketMessageLog extends Component {
 
     handleSendButton = (event) => {
         event.preventDefault();
 
-        socketExampleActions.SocketAction.send_message.say_hello(this.refs.message_text.value, API.HELLO.SAY_HELLO, SUBSCRIBE.MESSAGE.GREETINGS);
+        socketExampleActions.SocketAction.send_message.say_hello(this.refs.message_text.value);
 
         // this.props.socketsMessageSend(this.refs.message_text.value);
         this.refs.message_text.value = '';
+    };
+
+    handleGetUsers = (event) => {
+        event.preventDefault();
+
+        socketExampleActions.SocketAction.user.get_all();
+
+        // this.props.socketsMessageSend(this.refs.message_text.value);
+        // this.refs.message_text.value = '';
     };
 
     render() {
@@ -47,6 +55,12 @@ class SocketMessageLog extends Component {
                         onClick={this.handleSendButton}
                         disabled = {!connected}>
                         <i className="fa fa-sign-in"/> Send
+                    </button>
+                    <button
+                        className="btn btn-primary btn-sm"
+                        onClick={this.handleGetUsers}
+                        disabled = {!connected}>
+                        <i className="fa fa-sign-in"/> Get All Users
                     </button>
                 </form>
             </div>

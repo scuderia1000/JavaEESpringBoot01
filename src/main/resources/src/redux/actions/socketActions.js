@@ -7,19 +7,19 @@ export const socketsConnecting = () => {
 export const socketsConnect = () => {
     return {type: types.SOCKETS_CONNECT};
 };
-export const socketsConnected= () => {
+export const socketsConnected = () => {
     return {type: types.SOCKETS_CONNECTED};
 };
-export const socketsDisconnecting= () => {
+export const socketsDisconnecting = () => {
     return {type: types.SOCKETS_DISCONNECTING};
 };
-export const socketsDisconnect= () => {
+export const socketsDisconnect = () => {
     return {type: types.SOCKETS_DISCONNECT};
 };
-export const socketsDisconnected= () => {
+export const socketsDisconnected = () => {
     return {type: types.SOCKETS_DISCONNECTED};
 };
-export const socketsMessageSending =(sendMessage) => {
+export const socketsMessageSending = (sendMessage) => {
     return {type: types.SOCKETS_MESSAGE_SENDING, message_send: sendMessage};
 };
 
@@ -39,9 +39,14 @@ const socketsMessageSend = (data, api, subscribe) => {
 };
 
 export const SocketAction = {
-  send_message: {
-      say_hello: function (data, api, subscribe) {
-          store.dispatch(socketsMessageSend(data, api, subscribe))
-      }
-  }  
+    send_message: {
+        say_hello: function (data) {
+            store.dispatch(socketsMessageSend(data, types.API.HELLO.SAY_HELLO, types.SUBSCRIBE.MESSAGE.GREETINGS));
+        }
+    },
+    user: {
+        get_all: () => {
+            store.dispatch(socketsMessageSend('', types.API.USER.GET_USERS, types.SUBSCRIBE.USER.USERS_INFO));
+        }
+    }
 };
