@@ -14,15 +14,20 @@ public class User extends AbstractEntity {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "user_name")
+    private String userName;
     @Column
     private String email;
     @Column
     private Integer age;
 
-    public User(UUID id, String firstName, String lastName, String email, Integer age) {
+    public User() {}
+
+    public User(UUID id, String firstName, String lastName, String userName, String email, Integer age) {
         super(id);
         this.firstName = firstName;
         this.lastName = lastName;
+        this.userName = userName;
         this.email = email;
         this.age = age;
     }
@@ -57,5 +62,13 @@ public class User extends AbstractEntity {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

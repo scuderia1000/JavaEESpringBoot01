@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as socketExampleActions from '../../redux/actions/socketActions';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import './User.css';
 
 class SocketMessageLog extends Component {
 
@@ -22,12 +25,26 @@ class SocketMessageLog extends Component {
         // this.refs.message_text.value = '';
     };
 
+    handleSaveClick = () => {
+
+    };
+
     render() {
         const {loaded, message, connected, message_history} = this.props;
         return (
             <div>
                 <h3>Received Message</h3>
                 <div>{message}</div>
+                <div style={{minWidth: 1500, maxWidth: 1500}}>
+                    <div className="user-input">
+                        <TextField hintText="Введите логин" defaultValue={""} floatingLabelText="Логин"/>
+                        <TextField hintText="Введите имя" defaultValue={""} floatingLabelText="Имя"/>
+                        <TextField hintText="Введите фамилию" defaultValue={""} floatingLabelText="Фамилия"/>
+                        <TextField hintText="Введите возраст" defaultValue={""} floatingLabelText="Возраст"/>
+                        <TextField hintText="Введите e-mail" defaultValue={""} floatingLabelText="E-mail"/>
+                    </div>
+                    <RaisedButton label="Сохранить" primary={true} onClick={this.handleSaveClick}/>
+                </div>
                 <h3>Message log</h3>
                 <ul>
                     {

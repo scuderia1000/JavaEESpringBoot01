@@ -4,10 +4,10 @@ import AppRouter from "./AppRoute";
 import ReduxStore from './redux/ReduxStore';
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 
 ReactDom.render(
-    <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+    <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
         <AppRouter store={ReduxStore} />
     </MuiThemeProvider>,
     document.getElementById('react')

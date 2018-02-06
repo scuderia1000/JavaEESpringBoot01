@@ -1,0 +1,31 @@
+html, body {
+    font-family: "Roboto", sans-serif;
+    overflow: hidden;
+    background-color: rgb(225, 225, 225);
+}
+.app {
+    display: flex;
+    flex-direction: column;
+}
+
+#main-header button:first-child {
+    margin: 11px;
+}
+
+.ws-status {
+    /*border: 1px solid;*/
+    margin: 12px 0 0 12px;
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+}
+
+.disconnected {
+    background-color: rgb(255, 87, 81);
+    background: radial-gradient(rgb(255, 87, 81), #b50005);
+}
+
+.connected {
+    background-color: #90ffb4;
+    background: radial-gradient(#90ffb4, #00b53f);
+}

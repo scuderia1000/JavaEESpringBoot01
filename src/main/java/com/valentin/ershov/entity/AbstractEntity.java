@@ -29,6 +29,7 @@ public abstract class AbstractEntity {
         this.id = id;
     }
 
+    @PrePersist
     public void preInsert() {
 
         if (create_time == null) {

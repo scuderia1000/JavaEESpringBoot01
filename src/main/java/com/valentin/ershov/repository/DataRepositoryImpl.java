@@ -13,6 +13,7 @@ import java.util.Set;
 /**
  * Created by Valek on 17.08.2017.
  */
+@Deprecated
 @Repository("dataRepository")
 public class DataRepositoryImpl implements DataRepository<Data> {
 

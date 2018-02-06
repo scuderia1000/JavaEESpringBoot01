@@ -1,27 +1,26 @@
-import React, {PropTypes} from "react";
-import Header from '../../components/common/Header';
-import CommonTable from "../../components/CommonTable"
+import React from "react";
+import Header from "../../components/Header"
+import LeftPanel from "../../components/leftPanel/LeftPanel"
+import "./Main.css"
 
-const App = (props) => {
-    const EMPLOYEES = [
-        {name: 'Joe Biden', age: 45, years: 5},
-        {name: 'President Obama', age: 54, years: 8},
-        {name: 'Crystal Mac', age: 34, years: 12},
-        {name: 'James Henry', age: 33, years: 2}
-    ];
-
-    return (
-        <div>
-            <Header />
-        </div>
-        /*<div>
-            <h1>Hello, World!</h1>
-            <div>
-                <CommonTable employees={EMPLOYEES} />
+const Main = () =>
+    (<div className="app">
+        <div id="main-container">
+            <Header/>
+            <div style={{
+                display: 'flex',
+                position: 'relative',
+                zIndex: 5,
+                height: '100%',
+                background: 'rgb(218, 222, 223)',
+                paddingBottom: '78px',
+                boxSizing: 'border-box',
+                flex: 1
+            }}>
+                <LeftPanel/>
             </div>
-        </div>*/
+        </div>
+    </div>
     );
-};
 
-export default App;
-
+export default Main;
